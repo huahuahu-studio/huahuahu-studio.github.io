@@ -1,0 +1,44 @@
+---
+import type { Language } from '../data/site';
+import type { AppConfig } from '../data/apps';
+interface Props {
+  lang: Language;
+  app: AppConfig;
+  compact?: boolean;
+}
+const { lang, app, compact = false } = Astro.props;
+const content = app.content[lang];
+const { front, back } = content.scene;
+---
+
+<div class:list={['phone-scene', { compact }]}>
+  <div class="scene-orbit" aria-hidden="true"></div>
+  <span class="scene-spark spark-one" aria-hidden="true">
+    ✳
+  </span>
+  <span class="scene-spark spark-two" aria-hidden="true">
+    ✦
+  </span>
+  <div class="phone phone-back">
+    <img
+      src={back.src}
+      width={back.width}
+      height={back.height}
+      alt={back.alt}
+      fetchpriority="high"
+    />
+  </div>
+  <div class="phone phone-front">
+    <img
+      src={front.src}
+      width={front.width}
+      height={front.height}
+      alt={front.alt}
+      fetchpriority="high"
+    />
+  </div>
+  <div class="joy-sticker">
+    <img src={app.icon} width="45" height="45" alt="" />
+    <span>{content.sticker}</span>
+  </div>
+</div>

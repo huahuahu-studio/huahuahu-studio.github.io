@@ -1,0 +1,107 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import PhoneScene from '../../../../components/PhoneScene.astro';
+import {
+  languages,
+  copy,
+  route,
+  documentKeys,
+  type Language,
+} from '../../../../data/site';
+import { apps, type AppConfig } from '../../../../data/apps';
+interface Props {
+  app: AppConfig;
+}
+export function getStaticPaths() {
+  return languages.flatMap((lang) =>
+    apps.map((app) => ({ params: { lang, app: app.id }, props: { app } })),
+  );
+}
+const lang = Astro.params.lang as Language;
+const { app } = Astro.props;
+const t = copy[lang];
+const a = app.content[lang];
+---
+
+<Base
+  lang={lang}
+  title={a.name + ' — ' + a.productLine + a.productAccent}
+  description={a.productDescription}
+  path={'apps/' + app.id}
+>
+  <section class="product-hero wrap">
+    <div class="hero-copy">
+      <a class="breadcrumb" href={route(lang) + '#apps'}>
+        ← {t.apps}
+      </a>
+      <div class="product-identity">
+        <span class="app-icon small">
+          <img src={app.icon} width="44" height="44" alt="" />
+        </span>
+        <span>
+          {a.name}
+          <small>{a.platform}</small>
+        </span>
+      </div>
+      <h1>
+        {a.productLine}
+        <br />
+        <em>{a.productAccent}</em>
+      </h1>
+      <p class="hero-description">{a.productDescription}</p>
+      <a class="button button-dark store-button" href={app.storeUrl[lang]}>
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M17.2 12.8c0-2 1.7-3 1.8-3.1-1-1.5-2.6-1.7-3.2-1.7-1.4-.2-2.7.8-3.4.8-.7 0-1.8-.8-3-.8-1.6 0-3.1.9-3.9 2.3-1.7 2.8-.4 6.9 1.2 9.2.8 1.1 1.7 2.2 2.9 2.2 1.2 0 1.6-.7 3.1-.7s1.9.7 3.2.7 2.1-1.1 2.8-2.2c.9-1.3 1.3-2.5 1.3-2.6-.1 0-2.8-1.1-2.8-4.1ZM15 6.4c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.9-1.1 2.9 1.1.1 2.2-.5 2.9-1.3Z"
+          />
+        </svg>
+        {t.download}
+        <span aria-hidden="true">↗</span>
+      </a>
+      <div class="app-quick-links">
+        <a href={route(lang, 'apps/' + app.id + '/privacy')}>{t.privacy}</a>
+        <a href={route(lang, 'apps/' + app.id + '/data')}>{t.data}</a>
+      </div>
+    </div>
+    <PhoneScene lang={lang} app={app} />
+  </section>
+  <section class="features-section wrap">
+    <div class="section-heading">
+      <h2>{a.featureTitle}</h2>
+      <p>{a.screenshotNote}</p>
+    </div>
+    <div class="feature-grid">
+      {a.features.map((feature) => (
+        <article class="feature-item">
+          <p class="eyebrow orange">{feature.number}</p>
+          <h3>{feature.title}</h3>
+          <p>{feature.text}</p>
+          <div class="feature-screenshot">
+            <img
+              src={feature.screenshot.src}
+              alt={feature.screenshot.alt}
+              width={feature.screenshot.width}
+              height={feature.screenshot.height}
+              loading="lazy"
+            />
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="resource-section wrap">
+    <p class="eyebrow orange">GOOD TO KNOW</p>
+    <h2>{t.resources}</h2>
+    <p>{t.resourcesDescription}</p>
+    <div class="resource-grid">
+      {documentKeys.map((key, i) => (
+        <a href={route(lang, 'apps/' + app.id + '/' + key)}>
+          <span class="eyebrow">0{i + 1}</span>
+          <span>{t[key]}</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

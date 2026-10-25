@@ -1,0 +1,38 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import Document from '../../../../components/Document.astro';
+import { languages, documentKeys, type Language } from '../../../../data/site';
+import { apps, type AppConfig } from '../../../../data/apps';
+import { appDocuments, type DocumentContent } from '../../../../data/documents';
+interface Props {
+  app: AppConfig;
+  document: DocumentContent;
+}
+export function getStaticPaths() {
+  return languages.flatMap((lang) =>
+    apps.flatMap((app) =>
+      documentKeys.map((key) => {
+        const document = appDocuments[app.id]?.[lang]?.[key];
+        if (!document)
+          throw new Error(`Missing document: ${app.id}/${lang}/${key}`);
+        return {
+          params: { lang, app: app.id, document: key },
+          props: { app, document },
+        };
+      }),
+    ),
+  );
+}
+const lang = Astro.params.lang as Language;
+const { app, document } = Astro.props;
+const key = Astro.params.document as (typeof documentKeys)[number];
+---
+
+<Base
+  lang={lang}
+  title={document.title + ' — ' + app.brandName}
+  description={document.lead}
+  path={'apps/' + app.id + '/' + key}
+>
+  <Document lang={lang} document={document} app={app} active={key} />
+</Base>

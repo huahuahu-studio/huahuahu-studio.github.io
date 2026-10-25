@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import Home from '../components/Home.astro';
+import { copy } from '../data/site';
+import { apps, featuredApp } from '../data/apps';
+---
+
+<Base lang="zh" title={copy.zh.brand} description={copy.zh.heroDescription}>
+  <Home lang="zh" apps={apps} featuredApp={featuredApp} />
+  <script is:inline>
+    const lang = navigator.language.toLowerCase().startsWith('zh')
+      ? 'zh'
+      : 'en';
+    window.location.replace('/' + lang + '/' + window.location.hash);
+  </script>
+</Base>

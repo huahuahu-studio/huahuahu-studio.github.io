@@ -1,0 +1,6 @@
+dist
+node_modules
+.astro
+artifacts
+package-lock.json
+public/images

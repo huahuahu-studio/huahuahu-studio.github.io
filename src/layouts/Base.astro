@@ -1,0 +1,126 @@
+---
+import '../styles/global.css';
+import { copy, route, siteUrl, email, type Language } from '../data/site';
+interface Props {
+  lang: Language;
+  title: string;
+  description: string;
+  path?: string;
+  noindex?: boolean;
+}
+const { lang, title, description, path = '', noindex = false } = Astro.props;
+const t = copy[lang];
+const other = lang === 'zh' ? 'en' : 'zh';
+const canonical = siteUrl + route(lang, path);
+---
+
+<!doctype html>
+<html lang={lang === 'zh' ? 'zh-Hans' : 'en'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8f7f2" />
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    <link
+      rel="alternate"
+      hreflang="zh-Hans"
+      href={siteUrl + route('zh', path)}
+    />
+    <link rel="alternate" hreflang="en" href={siteUrl + route('en', path)} />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={siteUrl + route('en', path)}
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={t.brand} />
+    <meta property="og:locale" content={lang === 'zh' ? 'zh_CN' : 'en_US'} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      {t.skip}
+    </a>
+    <header class="site-header wrap">
+      <a href={route(lang)} class="brand" aria-label={t.brand + ' — ' + t.home}>
+        <img src="/favicon.svg" width="32" height="32" alt="" />
+        <span>
+          {t.brand}
+          <small>HUAHUAHU STUDIO</small>
+        </span>
+      </a>
+      <nav
+        class="main-nav"
+        aria-label={lang === 'zh' ? '主导航' : 'Main navigation'}
+      >
+        <a href={route(lang) + '#apps'}>{t.apps}</a>
+        <a
+          href={route(lang, 'about')}
+          aria-current={path === 'about' ? 'page' : undefined}
+        >
+          {t.about}
+        </a>
+        <div class="language-switch" aria-label={t.language}>
+          <a
+            href={route(lang, path)}
+            lang={lang === 'zh' ? 'zh-Hans' : 'en'}
+            aria-current="true"
+          >
+            {lang === 'zh' ? '中' : 'EN'}
+          </a>
+          <span aria-hidden="true">/</span>
+          <a
+            href={route(other, path)}
+            lang={other === 'zh' ? 'zh-Hans' : 'en'}
+            data-language-switch
+          >
+            {other === 'zh' ? '中' : 'EN'}
+          </a>
+        </div>
+      </nav>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer wrap">
+      <div class="footer-top">
+        <div>
+          <a class="footer-name" href={route(lang)}>
+            {t.brand}
+            <span aria-hidden="true"> ✳</span>
+          </a>
+          <p>{t.footerLine}</p>
+        </div>
+        <nav aria-label={lang === 'zh' ? '页脚导航' : 'Footer navigation'}>
+          <a href={route(lang) + '#apps'}>{t.apps}</a>
+          <a href={route(lang, 'about')}>{t.about}</a>
+          <a href={'mailto:' + email}>{t.contact} ↗</a>
+          <a href={route(lang, 'privacy')}>{t.websitePrivacy}</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <span>
+          © {new Date().getFullYear()} Huahuahu Studio. {t.rights}
+        </span>
+        <span>
+          Made with care. <span class="orange">●</span>
+        </span>
+      </div>
+    </footer>
+    <script>
+      for (const link of document.querySelectorAll<HTMLAnchorElement>(
+        '[data-language-switch]',
+      )) {
+        link.addEventListener('click', () => {
+          if (window.location.hash) link.hash = window.location.hash;
+        });
+      }
+    </script>
+  </body>
+</html>
