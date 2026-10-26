@@ -57,7 +57,7 @@
 
 ## 诊断与支持
 
-- 公开邮箱：`huahuahuapple@outlook.com`，见 `HHappyDocs/websites/hdiary/index.html:53`、`:64`；App 同样使用该邮箱，见 `HHappyDocs/HSharedCode/Sources/HUIComponent/HSwiftUI/HFeedback/HFeedback.swift:22-33`。
+- 旧网站与 App 的历史邮箱配置分别见 `HHappyDocs/websites/hdiary/index.html:53`、`:64` 和 `HHappyDocs/HSharedCode/Sources/HUIComponent/HSwiftUI/HFeedback/HFeedback.swift:22-33`。本官网当前联系邮箱统一使用 `src/data/site.ts` 的 `email` 配置，不沿用历史地址；修改本仓库不会自动修改 App 内的邮箱配置。
 - App 内反馈：`HHappyDocs/HDiaryLibrary/Sources/HDiaryAppFeature/Settings/HelpAndFeedback/HelpAndFeedbackView.swift:22-25` 调用邮件反馈，邮件主题包含 App 名和版本。没有自动附带全库或后台发送邮件。
 - 系统日志：`HHappyDocs/HDiaryLibrary/Sources/HDiaryConstants/Log/DiagnosticLogging.swift:23-37` 将诊断开启时的信息提升为 notice，默认开关读取缺省为 false（`:96-100`）。错误日志并不由此开关关闭。
 - 日志读取与导出实现：`HHappyDocs/HDiaryLibrary/Sources/HDiaryAppFeature/Settings/Diagnostics/DiagnosticLogCollector.swift:11-35` 读取当前进程 OSLog；`DiagnosticLogReport.swift:29-42` 报告时间、分类、日志消息，明确不包括 Widget 日志；`DiagnosticLogView.swift:50-59` 使用 ShareLink。

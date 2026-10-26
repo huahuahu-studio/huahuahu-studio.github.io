@@ -26,7 +26,7 @@ npm run preview
 
 遵守本机的代理要求执行联网安装。构建与检查不需要联网。
 
-`npm run check` 检查生成页面的站内链接、资源、章节锚点、语言对应页、标题、图片替代文字、canonical、Open Graph、语言对应链接的域名、sitemap 和 robots。网站运行时不依赖这个脚本。
+`npm run check` 检查生成页面的站内链接、资源、联系邮箱及邮件链接、章节锚点、语言对应页、标题、图片替代文字、canonical、Open Graph、语言对应链接的域名、sitemap 和 robots。网站运行时不依赖这个脚本。
 
 ## 内容维护
 
@@ -39,6 +39,8 @@ npm run preview
 | `src/styles/global.css`    | 响应式视觉样式                                              |
 | `public/images/<app-id>/`  | 图标与中英文截图                                            |
 | `docs/content-evidence.md` | HDiary 文案事实来源、与旧网站的差异及维护注意事项           |
+
+联系邮箱统一配置在 `src/data/site.ts` 的 `email`，首页、关于页、全部文档页和全站页脚（中英文）共用它。更换邮箱只修改该配置，不在页面或翻译文案中硬编码地址；构建后运行 `npm run check` 会检查所有生成页面的邮箱文字与 `mailto:` 链接是否与配置一致。
 
 新增 App 时：
 

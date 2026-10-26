@@ -2,7 +2,7 @@ import { readFile, readdir, access } from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { apps } from '../src/data/apps.ts';
-import { languages, documentKeys, siteUrl } from '../src/data/site.ts';
+import { languages, documentKeys, siteUrl, email } from '../src/data/site.ts';
 
 const root = path.resolve('dist');
 const origin = new URL(siteUrl).origin;
@@ -59,6 +59,11 @@ for (const file of pages) {
     !/<script[^>]+src="https?:/.test(html),
     'unexpected third-party script',
   );
+  for (const match of html.matchAll(
+    /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,
+  )) {
+    check(match[0] === email, 'email does not match site configuration');
+  }
   const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]));
   const rawIds = [...html.matchAll(/\bid="([^"]+)"/g)];
   check(ids.size === rawIds.length, 'duplicate element IDs');
@@ -66,7 +71,14 @@ for (const file of pages) {
     check(/\balt=/.test(image[0]), 'image missing alt');
   for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
     const raw = match[1].replace(/&amp;/g, '&');
-    if (/^(mailto:|tel:|data:)/.test(raw)) continue;
+    if (/^mailto:/i.test(raw)) {
+      check(
+        raw === 'mailto:' + email,
+        'contact link does not match site configuration',
+      );
+      continue;
+    }
+    if (/^(tel:|data:)/.test(raw)) continue;
     const url = new URL(raw, origin + urlPath);
     if (url.origin !== origin) continue;
     links++;
@@ -133,5 +145,5 @@ console.log(
     pages.length +
     ' pages and ' +
     links +
-    ' internal links/assets, translations, anchors, accessibility basics, and sitemap.',
+    ' internal links/assets, contact emails, translations, anchors, accessibility basics, and sitemap.',
 );

@@ -1,7 +1,8 @@
 export const languages = ['zh', 'en'] as const;
 export type Language = (typeof languages)[number];
 export const siteUrl = 'https://bloomtiger.pages.dev';
-export const email = 'huahuahuapple@outlook.com';
+// 所有页面的联系邮箱和 mailto 链接统一使用此配置。
+export const email = 'bloomtiger.apps@outlook.com';
 export const documentKeys = ['privacy', 'data', 'support', 'terms'] as const;
 export const route = (lang: Language, path = '') =>
   '/' + lang + '/' + (path ? path.replace(/^\/+|\/+$/g, '') + '/' : '');
