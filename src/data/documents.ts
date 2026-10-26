@@ -514,7 +514,7 @@ export const websitePrivacy: Record<'zh' | 'en', DocumentContent> = {
         id: 'hosting',
         title: '网站托管与安全日志',
         paragraphs: [
-          '本站通过 GitHub Pages 提供静态页面。根据 GitHub 的说明，访问 GitHub Pages 网站时，访客的 IP 地址会为安全目的被记录和保存，无论访客是否登录 GitHub。该处理由 GitHub 按其隐私声明管理。',
+          '本站通过 Cloudflare Pages 提供静态页面，并保留 GitHub Pages 兼容入口。访问页面时，相应托管服务可能处理 IP 地址、请求信息及安全日志，以交付网站和保障安全。相关处理适用 Cloudflare 或 GitHub 各自的隐私政策。',
         ],
       },
       {
@@ -555,7 +555,7 @@ export const websitePrivacy: Record<'zh' | 'en', DocumentContent> = {
         id: 'hosting',
         title: 'Hosting and security logs',
         paragraphs: [
-          'This website serves static pages through GitHub Pages. GitHub states that visitors’ IP addresses are logged and stored for security purposes when visiting GitHub Pages sites, whether or not they are signed in to GitHub. GitHub manages that processing under its privacy statement.',
+          'This website serves static pages through Cloudflare Pages and retains a GitHub Pages compatibility site. When you visit, the relevant hosting provider may process IP addresses, request information, and security logs to deliver and secure the website. That processing is governed by Cloudflare’s or GitHub’s own privacy policy.',
         ],
       },
       {

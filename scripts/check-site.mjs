@@ -2,10 +2,10 @@ import { readFile, readdir, access } from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { apps } from '../src/data/apps.ts';
-import { languages, documentKeys } from '../src/data/site.ts';
+import { languages, documentKeys, siteUrl } from '../src/data/site.ts';
 
 const root = path.resolve('dist');
-const origin = 'https://huahuahu-studio.github.io';
+const origin = new URL(siteUrl).origin;
 async function walk(dir) {
   const entries = await readdir(dir, { withFileTypes: true });
   return (
@@ -37,7 +37,24 @@ for (const file of pages) {
     /<meta name="description" content="[^"]+"/.test(html),
     'missing description',
   );
-  check(/<link rel="canonical"/.test(html), 'missing canonical');
+  const canonicalPath = /^(zh|en)\//.test(relative) ? urlPath : '/zh/';
+  const canonical = origin + canonicalPath;
+  check(
+    html.includes('<link rel="canonical" href="' + canonical + '"'),
+    'incorrect canonical URL',
+  );
+  check(
+    html.includes('<meta property="og:url" content="' + canonical + '"'),
+    'incorrect Open Graph URL',
+  );
+  for (const match of html.matchAll(
+    /<link rel="alternate"[^>]+href="([^"]+)"/g,
+  )) {
+    check(
+      new URL(match[1]).origin === origin,
+      'incorrect alternate URL origin',
+    );
+  }
   check(
     !/<script[^>]+src="https?:/.test(html),
     'unexpected third-party script',
@@ -93,6 +110,23 @@ assert.equal(
   (sitemap.match(/<loc>/g) || []).length,
   expectedLocalizedPages,
   'Sitemap must cover all localized pages',
+);
+const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
+  (match) => match[1],
+);
+const expectedSitemapUrls = pages
+  .map((file) => path.relative(root, file))
+  .filter((file) => /^(zh|en)\//.test(file))
+  .map((file) => origin + '/' + file.replace(/index\.html$/, ''));
+assert.deepEqual(
+  sitemapUrls.sort(),
+  expectedSitemapUrls.sort(),
+  'Sitemap URLs must use the production origin and cover each localized page once',
+);
+const robots = await readFile(path.join(root, 'robots.txt'), 'utf8');
+assert.ok(
+  robots.split(/\r?\n/).includes('Sitemap: ' + origin + '/sitemap.xml'),
+  'robots.txt must point to the production sitemap',
 );
 console.log(
   'Validated ' +

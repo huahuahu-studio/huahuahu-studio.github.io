@@ -11,3 +11,15 @@
 - 不包含对 HDiary App 的构建、模拟器或真机操作；App 数据行为的依据与范围见 `content-evidence.md`。
 
 GitHub Actions 会对每次发布重新执行构建与静态检查。实际部署结果以该仓库对应 commit 的工作流和线上网址为准。
+
+## Cloudflare 迁移准备
+
+日期：2026-10-26。
+
+- 本地 Node.js 24.18.0 下 `npm run build` 通过，保持纯静态构建，生成 18 个 HTML 页面。
+- `npm run check` 通过，检查 473 个站内链接／资源和 16 条 sitemap URL，并验证 canonical、Open Graph、语言对应链接的域名及 robots 的正式网址。
+- 临时将生成的中文网站隐私页、sitemap、robots 分别替换为旧域名，检查脚本均按预期失败；恢复产物后检查通过。未修改源文件以制造这些失败。
+- 浏览器核对中英文网站隐私正文、2026-10-26 的网站说明日期及两个托管服务的政策链接；App 文档日期保持原值。
+- 390px 宽度下中英文网站隐私页的页面宽度均为 390px，无横向溢出；从中文 `#hosting` 切到英文后 URL 保持 `/en/privacy/#hosting`。
+- 修改文件的 Prettier 检查和 `git diff --check` 通过。
+- 目标地址为 `https://bloomtiger.pages.dev`。以上为本地准备与验证记录，不代表该名称已获分配、Cloudflare 构建成功或生产站已上线；线上验收按 `cloudflare-deployment.md` 执行。

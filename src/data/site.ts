@@ -1,6 +1,6 @@
 export const languages = ['zh', 'en'] as const;
 export type Language = (typeof languages)[number];
-export const siteUrl = 'https://huahuahu-studio.github.io';
+export const siteUrl = 'https://bloomtiger.pages.dev';
 export const email = 'huahuahuapple@outlook.com';
 export const documentKeys = ['privacy', 'data', 'support', 'terms'] as const;
 export const route = (lang: Language, path = '') =>
@@ -51,6 +51,7 @@ export const copy = {
     terms: '使用条款',
     contents: '本页内容',
     updated: '更新于 2026 年 10 月 25 日',
+    websiteUpdated: '更新于 2026 年 10 月 26 日',
     question: '还有疑问？',
     emailAction: '通过邮件联系',
     resources: '安心使用，每一步都有说明。',
@@ -110,6 +111,7 @@ export const copy = {
     terms: 'Terms of use',
     contents: 'ON THIS PAGE',
     updated: 'Updated October 25, 2026',
+    websiteUpdated: 'Updated October 26, 2026',
     question: 'Still have a question?',
     emailAction: 'Get in touch by email',
     resources: 'A little clarity goes a long way.',

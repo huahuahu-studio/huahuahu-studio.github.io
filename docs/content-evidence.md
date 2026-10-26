@@ -86,10 +86,10 @@ App 当前隐私 URL 写死为 `https://app.tigerpro.org/hdiary/privacy.html`，
 ## 网站隐私证据与维护要求
 
 - GitHub 官方说明：`https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages`。2026-10-25 通过其公开 article API 读取正文，Data collection 段明确写：访问 GitHub Pages 时，无论是否登录 GitHub，访客 IP 地址都会为安全目的记录和保存。
-- 因此网站正文应说明 GitHub Pages 的安全日志，不能宣传“网站完全不收集任何数据”。应提供 GitHub Privacy Statement 链接供用户查看：`https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement`。
-- 此次网站方案为静态 Astro / GitHub Pages，未加入自建分析服务、第三方广告跟踪、营销 Cookie 或账号表单。最终交付前仍需检查合并后的页面、脚本与资源，确认没有新加入的分析标签、外部嵌入或远程字体。以后新增这些能力要同步修改网站政策。
+- 2026-10-26 核对 Cloudflare 官方隐私政策 `https://www.cloudflare.com/privacypolicy/` 的 End Users 部分：Cloudflare 可能处理 IP 地址、流量路由数据、系统配置信息和网站流量相关信息。网站迁移到 Cloudflare Pages，并保留 GitHub Pages 兼容入口，因此中英文正文应覆盖两种托管服务，不能宣传“网站完全不收集任何数据”。同时提供 Cloudflare Privacy Policy 与 GitHub Privacy Statement 链接。
+- 网站继续使用静态 Astro，未加入自建分析服务、第三方广告跟踪、营销 Cookie 或账号表单。最终交付前仍需检查合并后的页面、脚本与资源，确认没有新加入的分析标签、外部嵌入或远程字体。Cloudflare 控制台若开启自动注入的分析功能，也需要重新审查正文与隐私说明。
 - 邮箱链接仅打开邮件应用；邮件发送后由收件人及邮件服务处理用户主动提供的资料。不要把“点击邮件链接”说成已经上传日记，也不要宣称邮件服务完全不处理消息。
-- 中英文各文档的 section id 保持一致；正文仅纯文本，邮箱、Apple EULA、GitHub Privacy Statement 等实际链接由页面模板另行提供。
+- 中英文各文档的 section id 保持一致；正文仅纯文本，邮箱、Apple EULA、Cloudflare Privacy Policy、GitHub Privacy Statement 等实际链接由页面模板另行提供。
 
 ## 本次验证
 

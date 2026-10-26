@@ -2,9 +2,10 @@
 
 工作室的中英双语官网。集中维护 App 介绍、隐私政策、数据管理、帮助支持与使用条款，首个应用是快乐日记 HDiary。
 
-- 中文：https://huahuahu-studio.github.io/zh/
-- English: https://huahuahu-studio.github.io/en/
-- 技术：Astro 静态生成、TypeScript、原生 CSS、GitHub Pages。
+- 正式地址（完成 Cloudflare 项目创建并验收后生效）：https://bloomtiger.pages.dev/zh/
+- English: https://bloomtiger.pages.dev/en/
+- 技术：Astro 静态生成、TypeScript、原生 CSS、Cloudflare Pages。
+- 迁移期间保留 GitHub Pages 兼容入口：https://huahuahu-studio.github.io/。
 - 无需数据库或应用服务器；没有网站分析脚本、广告或外部字体依赖。
 - 内容在构建时生成 HTML，隐私与支持页不依赖 JavaScript。语言切换使用独立 URL 并保留章节锚点。
 
@@ -25,7 +26,7 @@ npm run preview
 
 遵守本机的代理要求执行联网安装。构建与检查不需要联网。
 
-`npm run check` 检查生成页面的站内链接、资源、章节锚点、语言对应页、标题、图片替代文字与 sitemap。网站运行时不依赖这个脚本。
+`npm run check` 检查生成页面的站内链接、资源、章节锚点、语言对应页、标题、图片替代文字、canonical、Open Graph、语言对应链接的域名、sitemap 和 robots。网站运行时不依赖这个脚本。
 
 ## 内容维护
 
@@ -47,15 +48,17 @@ npm run preview
 4. 运行构建和链接检查（页面数量会根据 App 配置计算），再实际检查两种语言与手机布局。
 5. PR 合入 `main` 后自动重新发布。增加语言时同时更新语言配置、文案、文档和 SEO 语言映射。
 
-政策更新时同步修改 `src/data/site.ts` 中的页面日期，保留 Git 历史。不要将真实日记、用户反馈附件、诊断日志、密钥或 App 源码复制进公开网站仓库。
+政策更新时同步修改 `src/data/site.ts` 中的页面日期（网站隐私使用 `websiteUpdated`，App 文档使用 `updated`），保留 Git 历史。不要将真实日记、用户反馈附件、诊断日志、密钥或 App 源码复制进公开网站仓库。
 
 ## 部署
 
-仓库名称必须是 **`huahuahu-studio.github.io`**，归属 **`huahuahu-studio`** 组织；网站按域名根路径构建。
+使用 Cloudflare Pages 免费计划，通过 Git 集成连接现有的 **`huahuahu-studio/huahuahu-studio.github.io`** 仓库。Cloudflare 项目名为 **`bloomtiger`**，目标地址为 **`https://bloomtiger.pages.dev`**；名称是否可用以 Cloudflare 创建结果为准，仓库无需改名。网站按域名根路径构建。
 
-GitHub 仓库设置 → Pages → Source 选择 **GitHub Actions**。`.github/workflows/deploy.yml` 在 `main` 推送时完成构建、验证和发布；PR 只构建验证，不发布。
+Cloudflare 构建配置：Astro 预设、生产分支 `main`、根目录为仓库根目录、构建命令 `npm run build && npm run check`、输出目录 `dist`、`NODE_VERSION=24`。部署保持纯静态，不需要 Cloudflare adapter、Functions 或数据库。完整操作与验收清单见 [`docs/cloudflare-deployment.md`](docs/cloudflare-deployment.md)。
 
-自定义域名时，需要同时修改 `astro.config.mjs`、`src/data/site.ts` 的网址、`public/robots.txt`，并配置 GitHub Pages 与 DNS。当前不提供项目子目录部署配置。
+迁移期间继续保留 `.github/workflows/deploy.yml`：`main` 推送时完成构建、验证并发布 GitHub Pages 兼容入口，PR 只构建验证。GitHub 仓库设置 → Pages → Source 保持 **GitHub Actions**。Cloudflare 的发布由其 Git 集成单独管理，线上验收后再安排旧入口跳转与发布流程收尾。
+
+站点正式网址统一在 `src/data/site.ts` 的 `siteUrl` 维护，Astro 配置、页面、sitemap 和检查脚本共用它；迁移域名时还需同步修改 `public/robots.txt`，检查脚本会验证两者一致。使用自有域名时再配置 Cloudflare 自定义域名与 DNS；当前免费 `pages.dev` 地址无需购买域名。当前不提供项目子目录部署配置。
 
 ## HDiary 的稳定网址
 

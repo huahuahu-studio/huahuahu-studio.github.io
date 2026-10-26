@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config';
+import { siteUrl } from './src/data/site.ts';
 
 export default defineConfig({
-  site: 'https://huahuahu-studio.github.io',
+  site: siteUrl,
   output: 'static',
   trailingSlash: 'always',
 });
