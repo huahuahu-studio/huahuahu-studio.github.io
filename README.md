@@ -2,7 +2,7 @@
 
 工作室的中英双语官网。集中维护 App 介绍、隐私政策、数据管理、帮助支持与使用条款，首个应用是快乐日记 HDiary。
 
-- 正式地址（完成 Cloudflare 项目创建并验收后生效）：https://bloomtiger.pages.dev/zh/
+- 中文：https://bloomtiger.pages.dev/zh/
 - English: https://bloomtiger.pages.dev/en/
 - 技术：Astro 静态生成、TypeScript、原生 CSS、Cloudflare Pages。
 - 迁移期间保留 GitHub Pages 兼容入口：https://huahuahu-studio.github.io/。
@@ -54,7 +54,7 @@ npm run preview
 
 ## 部署
 
-使用 Cloudflare Pages 免费计划，通过 Git 集成连接现有的 **`huahuahu-studio/huahuahu-studio.github.io`** 仓库。Cloudflare 项目名为 **`bloomtiger`**，目标地址为 **`https://bloomtiger.pages.dev`**；名称是否可用以 Cloudflare 创建结果为准，仓库无需改名。网站按域名根路径构建。
+使用 Cloudflare Pages 免费计划，通过 Git 集成连接现有的 **`huahuahu-studio/huahuahu-studio.github.io`** 仓库。Cloudflare 项目 **`bloomtiger`** 已上线，正式地址为 **`https://bloomtiger.pages.dev`**；仓库无需改名。网站按域名根路径构建。
 
 Cloudflare 构建配置：Astro 预设、生产分支 `main`、根目录为仓库根目录、构建命令 `npm run build && npm run check`、输出目录 `dist`、`NODE_VERSION=24`。部署保持纯静态，不需要 Cloudflare adapter、Functions 或数据库。完整操作与验收清单见 [`docs/cloudflare-deployment.md`](docs/cloudflare-deployment.md)。
 

@@ -1,6 +1,15 @@
 # Cloudflare Pages 部署
 
-目标：使用免费计划将现有静态官网发布到 `https://bloomtiger.pages.dev`，保留现有页面路径和 GitHub Pages 兼容入口。
+官网已于 2026-10-26 使用免费计划发布到 `https://bloomtiger.pages.dev`，保留现有页面路径和 GitHub Pages 兼容入口。
+
+## 当前部署
+
+- Cloudflare Pages 项目：`bloomtiger`；生产分支：`main`；自动部署已开启。
+- GitHub App 仅授权 `huahuahu-studio/huahuahu-studio.github.io` 一个仓库。
+- 首次生产提交：`f475951a29499a34b5e48be6cc398e1fd6344b58`。
+- 首次生产部署：`5810cdce-3335-4a23-ae8d-f514b0d5c27b`，云端显示 success，耗时 32 秒。
+- 首次云端构建使用 Node.js 24.22.1，执行 `npm run build && npm run check`。
+- 实际线上与本地验证记录见 [`validation.md`](validation.md)。
 
 ## 账号与项目
 
