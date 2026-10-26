@@ -512,16 +512,16 @@ export const websitePrivacy: Record<'zh' | 'en', DocumentContent> = {
     sections: [
       {
         id: 'hosting',
-        title: '网站托管与安全日志',
+        title: '访问与安全',
         paragraphs: [
-          '本站通过 Cloudflare Pages 提供静态页面，并保留 GitHub Pages 兼容入口。访问页面时，相应托管服务可能处理 IP 地址、请求信息及安全日志，以交付网站和保障安全。相关处理适用 Cloudflare 或 GitHub 各自的隐私政策。',
+          '访问本站时，网站服务提供商可能处理 IP 地址、请求信息及安全日志，用于提供页面、保障安全和排查故障。',
         ],
       },
       {
         id: 'analytics-cookies',
         title: '分析、广告与 Cookie',
         paragraphs: [
-          '本站没有接入我们自行运营的访问分析、第三方广告跟踪或营销 Cookie。你无需注册账号即可阅读页面。托管服务为交付网站和保障安全而进行的处理，仍适用其自身政策。',
+          '本站没有接入我们自行运营的访问分析、第三方广告跟踪或营销 Cookie。你无需注册账号即可阅读页面。',
         ],
       },
       {
@@ -553,16 +553,16 @@ export const websitePrivacy: Record<'zh' | 'en', DocumentContent> = {
     sections: [
       {
         id: 'hosting',
-        title: 'Hosting and security logs',
+        title: 'Access and security',
         paragraphs: [
-          'This website serves static pages through Cloudflare Pages and retains a GitHub Pages compatibility site. When you visit, the relevant hosting provider may process IP addresses, request information, and security logs to deliver and secure the website. That processing is governed by Cloudflare’s or GitHub’s own privacy policy.',
+          'When you visit this website, the website service provider may process IP addresses, request information, and security logs to serve pages, keep the site secure, and troubleshoot issues.',
         ],
       },
       {
         id: 'analytics-cookies',
         title: 'Analytics, advertising, and cookies',
         paragraphs: [
-          'This site does not integrate analytics operated by us, third-party advertising tracking, or marketing cookies. You do not need an account to read the pages. Processing by the hosting service to deliver and secure the website remains subject to that service’s own policies.',
+          'This site does not integrate analytics operated by us, third-party advertising tracking, or marketing cookies. You do not need an account to read the pages.',
         ],
       },
       {
