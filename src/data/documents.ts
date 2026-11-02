@@ -1,3 +1,4 @@
+import { clipmateDocuments } from './clipmate-documents';
 import type { AppId } from './apps';
 import type { Language, documentKeys } from './site';
 
@@ -9,6 +10,7 @@ export type DocSection = {
 };
 
 export type DocumentContent = {
+  updated?: Record<Language, string>;
   title: string;
   lead: string;
   sections: DocSection[];
@@ -503,6 +505,7 @@ const hdiaryDocuments: AppDocuments = {
 // Each app must explicitly provide its own localized policy and support documents.
 export const appDocuments: Record<AppId, AppDocuments> = {
   hdiary: hdiaryDocuments,
+  clipmate: clipmateDocuments,
 };
 
 export const websitePrivacy: Record<'zh' | 'en', DocumentContent> = {

@@ -77,15 +77,17 @@ const a = app.content[lang];
           <p class="eyebrow orange">{feature.number}</p>
           <h3>{feature.title}</h3>
           <p>{feature.text}</p>
-          <div class="feature-screenshot">
-            <img
-              src={feature.screenshot.src}
-              alt={feature.screenshot.alt}
-              width={feature.screenshot.width}
-              height={feature.screenshot.height}
-              loading="lazy"
-            />
-          </div>
+          {feature.screenshot && (
+            <div class="feature-screenshot">
+              <img
+                src={feature.screenshot.src}
+                alt={feature.screenshot.alt}
+                width={feature.screenshot.width}
+                height={feature.screenshot.height}
+                loading="lazy"
+              />
+            </div>
+          )}
         </article>
       ))}
     </div>

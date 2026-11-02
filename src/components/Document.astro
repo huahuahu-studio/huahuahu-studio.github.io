@@ -27,7 +27,8 @@ const a = app?.content[lang];
   <h1>{document.title}</h1>
   <p class="lead">{document.lead}</p>
   <p class="document-meta">
-    {active === 'privacy' && !app ? t.websiteUpdated : t.updated}
+    {document.updated?.[lang] ??
+      (active === 'privacy' && !app ? t.websiteUpdated : t.updated)}
   </p>
 </header>
 <div class="document-layout wrap">
