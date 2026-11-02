@@ -1,6 +1,6 @@
 # 花花虎工作室 · Huahuahu Studio
 
-工作室的中英双语官网。集中维护 App 介绍、隐私政策、数据管理、帮助支持与使用条款，首个应用是快乐日记 HDiary。
+工作室的中英双语官网。集中维护 App 介绍、隐私政策、数据管理、帮助支持与使用条款，现已包含快乐日记 HDiary 和剪切调试 ClipMate。
 
 - 中文：https://bloomtiger.pages.dev/zh/
 - English: https://bloomtiger.pages.dev/en/
@@ -30,15 +30,15 @@ npm run preview
 
 ## 内容维护
 
-| 文件                       | 用途                                                        |
-| -------------------------- | ----------------------------------------------------------- |
-| `src/data/site.ts`         | 工作室中英文文案、邮箱、网址及语言路由                      |
-| `src/data/apps.ts`         | 每个 App 的名字、商店链接、中英文介绍、功能和截图配置       |
-| `src/data/documents.ts`    | 每个 App 的双语隐私、数据、支持、条款文档，以及网站隐私说明 |
-| `src/components/`          | 首页、产品展示、文档等可复用组件                            |
-| `src/styles/global.css`    | 响应式视觉样式                                              |
-| `public/images/<app-id>/`  | 图标与中英文截图                                            |
-| `docs/content-evidence.md` | HDiary 文案事实来源、与旧网站的差异及维护注意事项           |
+| 文件                                                       | 用途                                                        |
+| ---------------------------------------------------------- | ----------------------------------------------------------- |
+| `src/data/site.ts`                                         | 工作室中英文文案、邮箱、网址及语言路由                      |
+| `src/data/apps.ts`                                         | 每个 App 的名字、商店链接、中英文介绍、功能和截图配置       |
+| `src/data/documents.ts` / `src/data/clipmate-documents.ts` | 每个 App 的双语隐私、数据、支持、条款文档，以及网站隐私说明 |
+| `src/components/`                                          | 首页、产品展示、文档等可复用组件                            |
+| `src/styles/global.css`                                    | 响应式视觉样式                                              |
+| `public/images/<app-id>/`                                  | 图标与中英文截图                                            |
+| `docs/content-evidence.md`                                 | HDiary 文案事实来源、与旧网站的差异及维护注意事项           |
 
 联系邮箱统一配置在 `src/data/site.ts` 的 `email`，首页、关于页、全部文档页和全站页脚（中英文）共用它。更换邮箱只修改该配置，不在页面或翻译文案中硬编码地址；构建后运行 `npm run check` 会检查所有生成页面的邮箱文字与 `mailto:` 链接是否与配置一致。
 
@@ -81,3 +81,17 @@ Cloudflare 构建配置：Astro 预设、生产分支 `main`、根目录为仓�
 HDiary 的太阳来自 App 原有的 SVG 品牌素材。截图来自 1.16 发布目录，使用代码生成的虚构文字、人物和插画，分别提供中文与英文版本；压缩为 600px 宽 WebP，保留实际 UI。详见 `docs/content-evidence.md`。
 
 本仓库公开用于展示和维护；未另行授予品牌、App 图标、截图或文案的再使用许可。
+
+## ClipMate 的稳定网址
+
+| 用途     | 中文                         | English                      |
+| -------- | ---------------------------- | ---------------------------- |
+| 产品介绍 | `/zh/apps/clipmate/`         | `/en/apps/clipmate/`         |
+| 隐私政策 | `/zh/apps/clipmate/privacy/` | `/en/apps/clipmate/privacy/` |
+| 数据说明 | `/zh/apps/clipmate/data/`    | `/en/apps/clipmate/data/`    |
+| 帮助支持 | `/zh/apps/clipmate/support/` | `/en/apps/clipmate/support/` |
+| 使用条款 | `/zh/apps/clipmate/terms/`   | `/en/apps/clipmate/terms/`   |
+
+ClipMate 的支持与隐私内容独立维护，事实来源见 [ClipMate 内容说明](docs/clipmate-content-evidence.md)。产品图使用现有 App 图标的静态组合，不冒充 App 截图；产品模板允许仅有图标和文字的展示。文档可指定自己的更新日期，因此新增 ClipMate 文档不会改变 HDiary 的政策日期。
+
+生产上线并确认上述网址 HTTP 200 后，再将 ClipMate 的 App Store Connect 支持、营销和隐私 URL 从旧域名迁移到这些路径。大陆地区已经停止销售，ClipMate 中文下载入口使用香港商店，英文使用美国商店。

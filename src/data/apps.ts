@@ -22,12 +22,12 @@ export interface AppContent {
   sticker: string;
   artCaption: string;
   featureTitle: string;
-  scene: { front: AppScreenshot; back: AppScreenshot };
+  scene?: { front: AppScreenshot; back: AppScreenshot };
   features: readonly {
     number: string;
     title: string;
     text: string;
-    screenshot: AppScreenshot;
+    screenshot?: AppScreenshot;
   }[];
   termsLink?: { href: string; label: string };
   privacyLink?: { href: string; label: string };
@@ -191,6 +191,104 @@ export const apps = [
               width: 600,
               height: 1304,
             },
+          },
+        ],
+        termsLink: {
+          href: 'https://www.apple.com/legal/internet-services/itunes/dev/stdeula/',
+          label: 'Read Apple’s Standard License Agreement',
+        },
+        privacyLink: {
+          href: 'https://www.apple.com/legal/privacy/',
+          label: 'Read Apple’s Privacy Policy',
+        },
+      },
+    },
+  },
+  {
+    id: 'clipmate',
+    brandName: 'ClipMate',
+    icon: '/images/clipmate/icon.svg',
+    platformBadge: 'iOS & iPadOS',
+    storeUrl: {
+      zh: 'https://apps.apple.com/hk/app/id6447276479',
+      en: 'https://apps.apple.com/us/app/id6447276479',
+    },
+    content: {
+      zh: {
+        name: '剪切调试',
+        secondaryName: 'ClipMate',
+        learn: '认识 ClipMate',
+        back: '返回 ClipMate',
+        appDescription:
+          '看清剪贴板里有什么。为开发者检查内容、数据表示与 UTType，排查原生输入和网页粘贴行为。',
+        productLine: '复制了什么，',
+        productAccent: '看得更清楚。',
+        productDescription:
+          '一次复制可能包含多种数据表示。ClipMate 帮你检查系统剪贴板中的类型、内容与预览，并比较 UIKit 输入控件和网页的粘贴结果。',
+        platform: '为 iPhone 和 iPad 设计',
+        appCategory: '开发者工具',
+        screenshotNote: '功能与最低系统要求以你安装的 App Store 版本为准。',
+        sticker: '看清每一次复制',
+        featureTitle: '从内容，到类型，再到粘贴行为。',
+        artCaption: 'CLIPBOARD CONTENT, MADE VISIBLE.',
+        features: [
+          {
+            number: '01',
+            title: '检查剪贴板内容',
+            text: '查看剪贴板项目及它们提供的数据表示，检查文本、图片和类型信息；对支持的格式打开系统预览。',
+          },
+          {
+            number: '02',
+            title: '理解 UTType',
+            text: '查看类型标识和父类型，理解同一份内容为何能以不同格式被其他 App 接收。',
+          },
+          {
+            number: '03',
+            title: '比较粘贴行为',
+            text: '在 UITextView、UITextField 与内置网页测试页中比较粘贴效果，定位原生与网页剪贴板的差异。',
+          },
+        ],
+        termsLink: {
+          href: 'https://www.apple.com/legal/internet-services/itunes/dev/stdeula/',
+          label: '阅读 Apple 标准许可协议',
+        },
+        privacyLink: {
+          href: 'https://www.apple.com/legal/privacy/',
+          label: '阅读 Apple 隐私政策',
+        },
+      },
+      en: {
+        name: 'ClipMate',
+        learn: 'Meet ClipMate',
+        back: 'Back to ClipMate',
+        appDescription:
+          'See what is on your clipboard. Inspect content, data representations, and UTTypes, and investigate native and web paste behavior.',
+        productLine: 'Know what',
+        productAccent: 'you just copied.',
+        productDescription:
+          'One copy can contain several data representations. ClipMate helps you inspect clipboard types, content, and previews, then compare how UIKit controls and a web page handle pasting.',
+        platform: 'Made for iPhone and iPad',
+        appCategory: 'Developer tools',
+        screenshotNote:
+          'Features and minimum system requirements depend on the App Store version you install.',
+        sticker: 'Every copy, understood',
+        featureTitle: 'Content. Types. Paste behavior.',
+        artCaption: 'CLIPBOARD CONTENT, MADE VISIBLE.',
+        features: [
+          {
+            number: '01',
+            title: 'Inspect the contents',
+            text: 'Browse clipboard items and their available representations. Inspect text, images, and type information, and open system previews for supported formats.',
+          },
+          {
+            number: '02',
+            title: 'Understand UTTypes',
+            text: 'Explore type identifiers and parent types to understand how other apps can accept different representations of the same content.',
+          },
+          {
+            number: '03',
+            title: 'Compare paste behavior',
+            text: 'Try pasting into UITextView, UITextField, and the bundled web test page to investigate differences between native and web clipboard behavior.',
           },
         ],
         termsLink: {
