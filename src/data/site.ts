@@ -1,5 +1,6 @@
 export const languages = ['zh', 'en'] as const;
 export type Language = (typeof languages)[number];
+export const brandName = 'bloom tiger';
 export const siteUrl = 'https://bloomtiger.pages.dev';
 // 所有页面的联系邮箱和 mailto 链接统一使用此配置。
 export const email = 'bloomtiger.apps@outlook.com';
@@ -8,7 +9,7 @@ export const route = (lang: Language, path = '') =>
   '/' + lang + '/' + (path ? path.replace(/^\/+|\/+$/g, '') + '/' : '');
 export const copy = {
   zh: {
-    brand: '花花虎工作室',
+    brand: brandName,
     apps: '我们的应用',
     about: '关于工作室',
     contact: '联系我',
@@ -52,14 +53,14 @@ export const copy = {
     terms: '使用条款',
     contents: '本页内容',
     updated: '更新于 2026 年 10 月 25 日',
-    websiteUpdated: '更新于 2026 年 10 月 26 日',
+    websiteUpdated: '更新于 2026 年 11 月 7 日',
     question: '还有疑问？',
     emailAction: '通过邮件联系',
     resources: '安心使用，每一步都有说明。',
     resourcesDescription: '了解数据如何保存、如何管理，也随时找到我们。',
     aboutTitle: '认真做应用，\n好好过生活。',
     aboutLead:
-      '你好，这里是花花虎工作室。一个从日常小事里寻找灵感的独立开发工作室。',
+      '你好，这里是 bloom tiger。一个从日常小事里寻找灵感的独立开发工作室。',
     aboutBody:
       '我们相信，好的应用不一定要做很多事情。能把一件小事做好，让生活更方便一点、更开心一点，就很有意义。快乐日记是这样的一个开始。',
     notFound: '这一页，暂时走丢了。',
@@ -67,7 +68,7 @@ export const copy = {
     goHome: '回到首页',
   },
   en: {
-    brand: 'Huahuahu Studio',
+    brand: brandName,
     apps: 'Our apps',
     about: 'The studio',
     contact: 'Say hello',
@@ -112,7 +113,7 @@ export const copy = {
     terms: 'Terms of use',
     contents: 'ON THIS PAGE',
     updated: 'Updated October 25, 2026',
-    websiteUpdated: 'Updated October 26, 2026',
+    websiteUpdated: 'Updated November 7, 2026',
     question: 'Still have a question?',
     emailAction: 'Get in touch by email',
     resources: 'A little clarity goes a long way.',
@@ -120,7 +121,7 @@ export const copy = {
       'Learn how your data is stored, how to manage it, and how to reach us.',
     aboutTitle: 'Thoughtful apps.\nEveryday inspiration.',
     aboutLead:
-      'Hello, we’re Huahuahu Studio. An independent studio finding inspiration in the small things in life.',
+      'Hello, we’re bloom tiger. An independent studio finding inspiration in the small things in life.',
     aboutBody:
       'We believe an app doesn’t need to do everything. Doing one small thing well, and making your day a little easier or happier, is enough to matter. HDiary is one such beginning.',
     notFound: 'This page has wandered off.',

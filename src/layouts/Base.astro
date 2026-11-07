@@ -1,6 +1,13 @@
 ---
 import '../styles/global.css';
-import { copy, route, siteUrl, email, type Language } from '../data/site';
+import {
+  copy,
+  route,
+  siteUrl,
+  email,
+  brandName,
+  type Language,
+} from '../data/site';
 interface Props {
   lang: Language;
   title: string;
@@ -50,10 +57,7 @@ const canonical = siteUrl + route(lang, path);
     <header class="site-header wrap">
       <a href={route(lang)} class="brand" aria-label={t.brand + ' — ' + t.home}>
         <img src="/favicon.svg" width="32" height="32" alt="" />
-        <span>
-          {t.brand}
-          <small>HUAHUAHU STUDIO</small>
-        </span>
+        <span>{t.brand}</span>
       </a>
       <nav
         class="main-nav"
@@ -106,7 +110,7 @@ const canonical = siteUrl + route(lang, path);
       </div>
       <div class="footer-bottom">
         <span>
-          © {new Date().getFullYear()} Huahuahu Studio. {t.rights}
+          © {new Date().getFullYear()} {brandName}. {t.rights}
         </span>
         <span>
           Made with care. <span class="orange">●</span>

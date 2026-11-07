@@ -25,7 +25,13 @@ const a = app.content[lang];
 
 <Base
   lang={lang}
-  title={a.name + ' — ' + a.productLine + a.productAccent}
+  title={
+    a.name +
+    ' — ' +
+    a.productLine +
+    (lang === 'en' ? ' ' : '') +
+    a.productAccent
+  }
   description={a.productDescription}
   path={'apps/' + app.id}
 >

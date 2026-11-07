@@ -1,6 +1,6 @@
-# 花花虎工作室 · Huahuahu Studio
+# bloom tiger
 
-工作室的中英双语官网。集中维护 App 介绍、隐私政策、数据管理、帮助支持与使用条款，现已包含快乐日记 HDiary 和剪切调试 ClipMate。
+工作室的中英双语官网。集中维护 App 介绍、隐私政策、数据管理、帮助支持与使用条款，现已包含快乐日记 HDiary 和剪贴调试 ClipMate。
 
 - 中文：https://bloomtiger.pages.dev/zh/
 - English: https://bloomtiger.pages.dev/en/

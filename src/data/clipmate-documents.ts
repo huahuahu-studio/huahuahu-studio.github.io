@@ -4,10 +4,10 @@ export const clipmateDocuments: AppDocuments = {
   zh: {
     privacy: {
       title: 'ClipMate 隐私政策',
-      lead: '这份政策说明剪切调试如何处理剪贴板内容、本地设置、Apple 购买服务和你主动发送的支持信息。',
+      lead: '这份政策说明剪贴调试如何处理剪贴板内容、本地设置、Apple 购买服务和你主动发送的支持信息。',
       updated: {
-        zh: '更新于 2026 年 11 月 2 日',
-        en: 'Updated November 2, 2026',
+        zh: '更新于 2026 年 11 月 7 日',
+        en: 'Updated November 7, 2026',
       },
       sections: [
         {
