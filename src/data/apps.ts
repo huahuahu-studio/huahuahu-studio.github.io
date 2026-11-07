@@ -215,7 +215,7 @@ export const apps = [
     },
     content: {
       zh: {
-        name: '剪切调试',
+        name: '剪贴调试',
         secondaryName: 'ClipMate',
         learn: '认识 ClipMate',
         back: '返回 ClipMate',

@@ -511,7 +511,7 @@ export const appDocuments: Record<AppId, AppDocuments> = {
 export const websitePrivacy: Record<'zh' | 'en', DocumentContent> = {
   zh: {
     title: '网站隐私说明',
-    lead: '这份说明适用于花花虎工作室官网。各 App 的数据处理方式请阅读对应的 App 隐私政策。',
+    lead: '这份说明适用于 bloom tiger 官网。各 App 的数据处理方式请阅读对应的 App 隐私政策。',
     sections: [
       {
         id: 'hosting',
@@ -552,7 +552,7 @@ export const websitePrivacy: Record<'zh' | 'en', DocumentContent> = {
   },
   en: {
     title: 'Website Privacy Notice',
-    lead: 'This notice applies to the Huahuahu Studio website. For an app’s data practices, read its own privacy policy.',
+    lead: 'This notice applies to the bloom tiger website. For an app’s data practices, read its own privacy policy.',
     sections: [
       {
         id: 'hosting',

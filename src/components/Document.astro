@@ -1,5 +1,12 @@
 ---
-import { copy, route, email, documentKeys, type Language } from '../data/site';
+import {
+  copy,
+  route,
+  email,
+  documentKeys,
+  brandName,
+  type Language,
+} from '../data/site';
 import type { DocumentContent } from '../data/documents';
 import type { AppConfig } from '../data/apps';
 interface Props {
@@ -21,7 +28,7 @@ const a = app?.content[lang];
     ← {a ? a.back : t.home}
   </a>
   <p class="eyebrow orange">
-    {app ? app.brandName.toUpperCase() + ' / ' : 'HUAHUAHU STUDIO / '}
+    {app ? app.brandName.toUpperCase() + ' / ' : brandName + ' / '}
     {active?.toUpperCase()}
   </p>
   <h1>{document.title}</h1>
