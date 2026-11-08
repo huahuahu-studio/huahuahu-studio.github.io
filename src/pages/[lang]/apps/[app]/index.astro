@@ -68,6 +68,9 @@ const a = app.content[lang];
       <div class="app-quick-links">
         <a href={route(lang, 'apps/' + app.id + '/privacy')}>{t.privacy}</a>
         <a href={route(lang, 'apps/' + app.id + '/data')}>{t.data}</a>
+        {a.extraLinks?.map((link) => (
+          <a href={link.href}>{link.label}</a>
+        ))}
       </div>
     </div>
     <PhoneScene lang={lang} app={app} />

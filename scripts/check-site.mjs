@@ -24,7 +24,11 @@ for (const file of pages) {
   const html = await readFile(file, 'utf8');
   const relative = path.relative(root, file);
   const urlPath = '/' + relative.replace(/index\.html$/, '');
-  const language = relative.startsWith('en/') ? 'en' : 'zh-Hans';
+  const language = relative.startsWith('zh-Hant/')
+    ? 'zh-Hant'
+    : relative.startsWith('en/')
+      ? 'en'
+      : 'zh-Hans';
   const check = (ok, msg) => {
     if (!ok) errors.push(relative + ': ' + msg);
   };
@@ -37,7 +41,7 @@ for (const file of pages) {
     /<meta name="description" content="[^"]+"/.test(html),
     'missing description',
   );
-  const canonicalPath = /^(zh|en)\//.test(relative) ? urlPath : '/zh/';
+  const canonicalPath = /^(zh|en|zh-Hant)\//.test(relative) ? urlPath : '/zh/';
   const canonical = origin + canonicalPath;
   check(
     html.includes('<link rel="canonical" href="' + canonical + '"'),
@@ -111,7 +115,7 @@ for (const file of pages) {
 }
 assert.equal(errors.length, 0, errors.join('\n'));
 const expectedLocalizedPages =
-  languages.length * (3 + apps.length * (1 + documentKeys.length));
+  languages.length * (3 + apps.length * (1 + documentKeys.length)) + 2;
 assert.equal(
   pages.length,
   expectedLocalizedPages + 2,
@@ -128,7 +132,7 @@ const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
 );
 const expectedSitemapUrls = pages
   .map((file) => path.relative(root, file))
-  .filter((file) => /^(zh|en)\//.test(file))
+  .filter((file) => /^(zh|en|zh-Hant)\//.test(file))
   .map((file) => origin + '/' + file.replace(/index\.html$/, ''));
 assert.deepEqual(
   sitemapUrls.sort(),

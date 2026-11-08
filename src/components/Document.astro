@@ -114,6 +114,17 @@ const a = app?.content[lang];
         </a>
       </p>
     )}
+    {app?.id === 'libai' && (active === 'support' || active === 'privacy') && (
+      <p>
+        <a
+          class="text-link"
+          href={'/zh-Hant/apps/libai/' + active + '/'}
+          lang="zh-Hant"
+        >
+          閱讀繁體中文版 →
+        </a>
+      </p>
+    )}
     <aside class="document-contact">
       <h2>{t.question}</h2>
       <p>
