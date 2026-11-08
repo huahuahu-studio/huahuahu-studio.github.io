@@ -35,6 +35,13 @@ const canonical = siteUrl + route(lang, path);
       hreflang="zh-Hans"
       href={siteUrl + route('zh', path)}
     />
+    {/^apps\/libai\/(support|privacy)$/.test(path) && (
+      <link
+        rel="alternate"
+        hreflang="zh-Hant"
+        href={siteUrl + '/zh-Hant/' + path + '/'}
+      />
+    )}
     <link rel="alternate" hreflang="en" href={siteUrl + route('en', path)} />
     <link
       rel="alternate"

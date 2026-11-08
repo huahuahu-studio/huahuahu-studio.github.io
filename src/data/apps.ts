@@ -1,3 +1,4 @@
+import { libaiApp } from './libai-app.ts';
 import type { Language } from './site';
 
 export interface AppScreenshot {
@@ -29,6 +30,7 @@ export interface AppContent {
     text: string;
     screenshot?: AppScreenshot;
   }[];
+  extraLinks?: readonly { href: string; label: string }[];
   termsLink?: { href: string; label: string };
   privacyLink?: { href: string; label: string };
 }
@@ -302,6 +304,7 @@ export const apps = [
       },
     },
   },
+  libaiApp,
 ] as const satisfies readonly AppConfig[];
 
 export type AppId = (typeof apps)[number]['id'];

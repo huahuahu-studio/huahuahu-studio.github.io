@@ -1,3 +1,4 @@
+import { libaiDocuments } from './libai-documents';
 import { clipmateDocuments } from './clipmate-documents';
 import type { AppId } from './apps';
 import type { Language, documentKeys } from './site';
@@ -506,6 +507,7 @@ const hdiaryDocuments: AppDocuments = {
 export const appDocuments: Record<AppId, AppDocuments> = {
   hdiary: hdiaryDocuments,
   clipmate: clipmateDocuments,
+  libai: libaiDocuments,
 };
 
 export const websitePrivacy: Record<'zh' | 'en', DocumentContent> = {

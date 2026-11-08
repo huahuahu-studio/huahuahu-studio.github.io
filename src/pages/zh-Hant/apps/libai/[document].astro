@@ -1,0 +1,159 @@
+---
+import '../../../../styles/global.css';
+import { libaiTraditionalDocuments } from '../../../../data/libai-documents';
+import { siteUrl, email, brandName } from '../../../../data/site';
+import type { DocumentContent } from '../../../../data/documents';
+interface Props {
+  document: DocumentContent;
+}
+export function getStaticPaths() {
+  return Object.entries(libaiTraditionalDocuments).map(([key, document]) => ({
+    params: { document: key },
+    props: { document },
+  }));
+}
+const { document } = Astro.props;
+const key = Astro.params.document!;
+const path = 'apps/libai/' + key + '/';
+const canonical = siteUrl + '/zh-Hant/' + path;
+const title = document.title + ' — ' + brandName;
+---
+
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8f7f2" />
+    <meta name="description" content={document.lead} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="zh-Hant" href={canonical} />
+    <link rel="alternate" hreflang="zh-Hans" href={siteUrl + '/zh/' + path} />
+    <link rel="alternate" hreflang="en" href={siteUrl + '/en/' + path} />
+    <link rel="alternate" hreflang="x-default" href={siteUrl + '/en/' + path} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={document.lead} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={brandName} />
+    <meta property="og:locale" content="zh_TW" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      跳至主要內容
+    </a>
+    <header class="site-header wrap">
+      <a href="/zh/" class="brand" aria-label={brandName + ' — 首頁'}>
+        <img src="/favicon.svg" width="32" height="32" alt="" />
+        <span>{brandName}</span>
+      </a>
+      <nav class="main-nav" aria-label="主導覽">
+        <a href="/zh/#apps">應用程式</a>
+        <a href="/zh/about/">關於</a>
+        <div class="language-switch" aria-label="語言">
+          <a href={'/zh/' + path} lang="zh-Hans">
+            简
+          </a>
+          <span aria-hidden="true">/</span>
+          <a href={'/zh-Hant/' + path} lang="zh-Hant" aria-current="true">
+            繁
+          </a>
+          <span aria-hidden="true">/</span>
+          <a href={'/en/' + path} lang="en">
+            EN
+          </a>
+        </div>
+      </nav>
+    </header>
+    <main id="main">
+      <header class="document-heading wrap">
+        <a class="breadcrumb" href="/zh/apps/libai/">
+          ← 返回李白介紹（簡體中文）
+        </a>
+        <p class="eyebrow orange">LI BAI / {key.toUpperCase()}</p>
+        <h1>{document.title}</h1>
+        <p class="lead">{document.lead}</p>
+        <p class="document-meta">更新於 2026 年 11 月 8 日</p>
+      </header>
+      <div class="document-layout wrap">
+        <nav class="document-nav" aria-label="目錄">
+          <p class="eyebrow">目錄</p>
+          {document.sections.map((section) => (
+            <a href={'#' + section.id}>{section.title}</a>
+          ))}
+          <div class="related-docs">
+            <a
+              href="/zh-Hant/apps/libai/support/"
+              aria-current={key === 'support' ? 'page' : undefined}
+            >
+              協助與支援
+            </a>
+            <a
+              href="/zh-Hant/apps/libai/privacy/"
+              aria-current={key === 'privacy' ? 'page' : undefined}
+            >
+              隱私權政策
+            </a>
+          </div>
+        </nav>
+        <article class="document-content">
+          {document.sections.map((section) => (
+            <section id={section.id}>
+              <h2>{section.title}</h2>
+              {section.paragraphs.map((p) => (
+                <p>{p}</p>
+              ))}
+              {section.bullets && (
+                <ul>
+                  {section.bullets.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          ))}
+          {key === 'privacy' && (
+            <p>
+              <a class="text-link" href="https://www.apple.com/legal/privacy/">
+                閱讀 Apple 隱私權政策 ↗
+              </a>
+            </p>
+          )}
+          <aside class="document-contact">
+            <h2>需要協助？</h2>
+            <p>
+              聯絡我們：<a href={'mailto:' + email}>{email}</a>
+            </p>
+          </aside>
+        </article>
+      </div>
+    </main>
+    <footer class="site-footer wrap">
+      <div class="footer-top">
+        <div>
+          <a class="footer-name" href="/zh/">
+            {brandName}
+            <span aria-hidden="true"> ✳</span>
+          </a>
+          <p>用心製作日常所需的應用程式。</p>
+        </div>
+        <nav aria-label="頁尾導覽">
+          <a href="/zh/#apps">應用程式</a>
+          <a href="/zh/about/">關於</a>
+          <a href={'mailto:' + email}>聯絡 ↗</a>
+          <a href="/zh/privacy/">網站隱私政策（簡體中文）</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <span>
+          © {new Date().getFullYear()} {brandName}. 保留所有權利。
+        </span>
+        <span>
+          Made with care. <span class="orange">●</span>
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>
